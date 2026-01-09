@@ -10,7 +10,6 @@ use super::{
 #[derive(Debug, Clone)]
 pub enum ImplVideoRecorder {
     Xorg(XorgVideoRecorder),
-    Wayland(WaylandVideoRecorder),
 }
 
 impl ImplVideoRecorder {
@@ -22,14 +21,12 @@ impl ImplVideoRecorder {
     pub fn start(&self) -> XCapResult<()> {
         match self {
             ImplVideoRecorder::Xorg(recorder) => recorder.start(),
-            ImplVideoRecorder::Wayland(recorder) => recorder.start(),
         }
     }
 
     pub fn stop(&self) -> XCapResult<()> {
         match self {
             ImplVideoRecorder::Xorg(recorder) => recorder.stop(),
-            ImplVideoRecorder::Wayland(recorder) => recorder.stop(),
         }
     }
 }
