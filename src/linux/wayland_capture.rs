@@ -49,8 +49,8 @@ fn org_gnome_shell_screenshot(
     Ok(rgba_image)
 }
 
-#[derive(DeserializeDict, Type, Debug)]
-#[zvariant(signature = "dict")]
+// #[derive(DeserializeDict, Type, Debug)]
+// #[zvariant(signature = "dict")]
 pub struct ScreenshotResponse {
     uri: String,
 }
