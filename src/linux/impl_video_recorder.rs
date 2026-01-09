@@ -3,7 +3,7 @@ use std::sync::mpsc::Receiver;
 use crate::{XCapResult, video_recorder::Frame};
 
 use super::{
-    impl_monitor::ImplMonitor, utils::wayland_detect, wayland_video_recorder::WaylandVideoRecorder,
+    impl_monitor::ImplMonitor,
     xorg_video_recorder::XorgVideoRecorder,
 };
 
@@ -15,13 +15,8 @@ pub enum ImplVideoRecorder {
 
 impl ImplVideoRecorder {
     pub fn new(monitor: ImplMonitor) -> XCapResult<(Self, Receiver<Frame>)> {
-        if wayland_detect() {
-            let (recorder, receiver) = WaylandVideoRecorder::new(monitor)?;
-            Ok((ImplVideoRecorder::Wayland(recorder), receiver))
-        } else {
-            let (recorder, receiver) = XorgVideoRecorder::new(monitor)?;
-            Ok((ImplVideoRecorder::Xorg(recorder), receiver))
-        }
+        let (recorder, receiver) = XorgVideoRecorder::new(monitor)?;
+        Ok((ImplVideoRecorder::Xorg(recorder), receiver))
     }
 
     pub fn start(&self) -> XCapResult<()> {

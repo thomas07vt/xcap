@@ -40,20 +40,6 @@ pub fn get_zbus_connection() -> XCapResult<&'static ZBusConnection> {
         .map_err(|err| XCapError::ZbusError(err.clone()))
 }
 
-pub fn wayland_detect() -> bool {
-    let xdg_session_type = var_os("XDG_SESSION_TYPE")
-        .unwrap_or_default()
-        .to_string_lossy()
-        .to_string();
-
-    let wayland_display = var_os("WAYLAND_DISPLAY")
-        .unwrap_or_default()
-        .to_string_lossy()
-        .to_string();
-
-    xdg_session_type.eq("wayland") || wayland_display.to_lowercase().contains("wayland")
-}
-
 pub fn get_current_screen_buf() -> XCapResult<ScreenBuf> {
     let (conn, index) = get_xcb_connection_and_index()?;
 
