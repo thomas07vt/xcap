@@ -23,6 +23,8 @@ image = { version = "0.25", default-features = false, features = ["png"] }
 log = "0.4"
 scopeguard = "1.2"
 thiserror = "2.0"
+zvariant = "4.2.0"
+zvariant_derive = "4.2.0"
 
 [target.'cfg(target_os = "macos")'.dependencies]
 dispatch2 = "0.3"
